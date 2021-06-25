@@ -4,6 +4,7 @@
   "description": "This is a studies doc of mine",
   "main": "index.js",
   "scripts": {
+    "dev": "vuepress dev docs",
     "docs:dev": "vuepress dev docs",
     "docs:build": "vuepress build docs",
     "docs:cache": "vuepress dev docs --cache .cache",

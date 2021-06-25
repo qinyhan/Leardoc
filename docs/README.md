@@ -1,8 +1,8 @@
 ---
 home: true
-heroImage: /assets/images/logo.jpg
+heroImage: /assets/images/logo.gif
 actionText: 快速上手 →
-actionLink: /guide/index/index
+actionLink: /guide/index/about
 # heroImage: /hero.png
 # heroImageStyle: {
 #   maxWidth: '600px',

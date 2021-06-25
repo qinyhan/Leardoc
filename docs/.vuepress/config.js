@@ -1,11 +1,30 @@
 const path = require('path')
 
 module.exports = {
-    logo: '/images/logo.jpg',
+    logo: path.resolve(__dirname + '/images/', 'logo.gif'),
     title: 'Doc',
     description: '我的个人DOC',
     base: '/',
     palette: path.resolve(__dirname, 'palette.styl'),   //  设置主题样式
+    //  多语言设置
+    locales: {
+        // 键名是该语言所属的子路径
+        // 作为特例，默认语言可以使用 '/' 作为其路径。
+        '/': {
+            lang: 'Chinese', // 将会被设置为 <html> 的 lang 属性
+            title: 'Doc',
+            description: 'DOC笔记'
+        },
+        '/zh/': {
+            lang: 'English',
+            title: 'Doc',
+            description: 'Vue 驱动的静态网站生成器'
+        }
+    },
+    algolia: {
+        apiKey: '<API_KEY>',
+        indexName: '<INDEX_NAME>'
+    },
     head: [
         [
             "link",
@@ -38,10 +57,7 @@ module.exports = {
                 link: '',
                 ariaLabel: 'Menu',
                 items: [    //  设置导航栏下拉
-                    {
-                        text: 'Javascript',
-                        link: '/'
-                    }
+                    { text: 'Javascript', link: '/guide/Javascript/javascript' }
                 ]
             }
         ],
@@ -50,25 +66,7 @@ module.exports = {
         lastUpdated: 'Last Updated',
         search: true,   //  禁用或者开启内置搜索框
         searchMaxSuggestions: 10,    //  调整默认搜索框显示的搜索结果数量
-        sidebar: [
-            {
-                title: '介绍',   // 必要的
-                path: '/guide/index/about',      // 可选的, 标题的跳转链接，应为绝对路径且必须存在
-                sidebarDepth: 1,    // 可选的, 默认值是 1
-                children: [
-                    {
-                        title: '简介',   // 必要的
-                        path: '/guide/index/about',      // 可选的, 标题的跳转链接，应为绝对路径且必须存在
-                    }
-                ]
-            },
-            {
-                title: '计划',   // 必要的
-                path: '/guide/index/plan',      // 可选的, 标题的跳转链接，应为绝对路径且必须存在
-                sidebarDepth: 1,    // 可选的, 默认值是 1
-                children: []
-            }
-        ]
+        sidebar: 'auto'
     },
     markdown: {
         lineNumbers: true,   //  设置Markdown行号
@@ -91,53 +89,5 @@ module.exports = {
         ],
         ['vuepress-plugin-code-copy'],
         ['@vuepress/nprogress']
-    ],
-    locales: {
-        '/': {
-            // 多语言下拉菜单的标题
-            selectText: '选择语言',
-            // 该语言在下拉菜单中的标签
-            label: '简体中文',
-            // 编辑链接文字
-            editLinkText: '在 GitHub 上编辑此页',
-            // Service Worker 的配置
-            serviceWorker: {
-                updatePopup: {
-                    message: "发现新内容可用.",
-                    buttonText: "刷新"
-                }
-            },
-            // 当前 locale 的 algolia docsearch 选项
-            algolia: {},
-            nav: [
-                { text: '嵌套', link: '/zh/nested/' }
-            ],
-            sidebar: {
-                '/zh/': [/* ... */],
-                '/zh/nested/': [/* ... */]
-            }
-        },
-        '/en/': {
-            selectText: '多语言',
-            label: 'English',
-            ariaLabel: 'Languages',
-            editLinkText: 'Edit this page on GitHub',
-            serviceWorker: {
-                updatePopup: {
-                    message: "New content is available.",
-                    buttonText: "Refresh"
-                }
-            },
-            algolia: {},
-            nav: [
-                { text: 'Nested', link: '/guide/index/index', ariaLabel: 'Nested' }
-            ],
-            sidebar: {
-                '/': [
-                    'guide/index index'
-                ],
-                '/guide/index/index/': [/* ... */]
-            }
-        }
-    }
+    ]
 }
